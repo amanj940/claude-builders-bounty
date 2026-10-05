@@ -1,53 +1,44 @@
-# Claude Builders Bounty 🤖
+# Claude Builders Bounty
 
-> A community bounty board for Claude Code builders.
+This repository contains utilities for Claude Builders bounty challenges.
 
-Building with Claude Code? Have tasks to delegate?
-Want to get paid for contributing to AI projects?
-You're in the right place.
+## Generate a Structured CHANGELOG
 
----
+A simple Bash script (`changelog.sh`) is provided to automatically generate a structured `CHANGELOG.md` from your project's Git history.
 
-## How it works
+### How to use
 
-**To post a bounty**
-1. Open a GitHub issue with a clear description and acceptance criteria
-2. Comment `/opire create $XXX` in the issue to set the reward
-3. Share the link — contributors will find it
+1. **Ensure your repository has at least one Git tag** (e.g., `v1.0.0`). The script will generate the changelog for commits since the latest tag.
+2. **Run the script**:
+   ```bash
+   bash changelog.sh
+   ```
+3. **Commit the generated `CHANGELOG.md`** to your repository.
 
-**To claim a bounty**
-1. Browse the open issues below
-2. Comment `/opire try` in the issue you want to work on
-3. Submit a PR — payment is automatic on merge ✅
+The script categorises commits into the following sections based on their commit message prefixes:
+- `Added` – messages starting with `feat:`, `add:`, `Feature:`, etc.
+- `Fixed` – messages starting with `fix:`, `bug:`, etc.
+- `Changed` – messages starting with `refactor:`, `change:`, `chore:`, etc.
+- `Removed` – messages starting with `remove:`, `del:`, `Delete:`, etc.
 
----
+Any commit that does not match a specific prefix falls under `Changed` by default.
 
-## Active Bounties
+### Example output
 
-| # | Task | Amount | Status |
-|---|------|--------|--------|
-| [#1](../../issues/1) | SKILL: Generate a CHANGELOG from git history | $50 | 🟢 Open |
-| [#2](../../issues/2) | TEMPLATE: CLAUDE.md for a Next.js + SQLite project | $75 | 🟢 Open |
-| [#3](../../issues/3) | HOOK: Block destructive bash commands in Claude Code | $100 | 🟢 Open |
-| [#4](../../issues/4) | AGENT: PR reviewer with structured Markdown output | $150 | 🟢 Open |
-| [#5](../../issues/5) | WORKFLOW: n8n + Claude API — automated weekly dev summary | $200 | 🟢 Open |
+```markdown
+## [Unreleased]
 
----
+### Added
+- feat: support for new API endpoint
 
-## Rules
+### Fixed
+- fix: resolve crash on startup
 
-- Tasks must be related to Claude Code or AI tooling
-- Every issue must have clear acceptance criteria before a bounty is activated
-- Payment is handled by [Opire](https://opire.dev) (Stripe)
-- Quality over speed — a solid PR beats a fast one
+### Changed
+- refactor: improve logging mechanism
 
----
+### Removed
+- remove: deprecated configuration flag
+```
 
-## Community
-
-- 🐦 X: [@ClaudeBounty](https://x.com/ClaudeBounty)
-- 📧 Contact: claudebounty@gmail.com
-
----
-
-*Started by the Claude builder community · March 2026 · MIT License*
+Feel free to customise the script to match your project's commit conventions.
